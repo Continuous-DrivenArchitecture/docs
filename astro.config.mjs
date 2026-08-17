@@ -30,7 +30,7 @@ const baseLinks = ({ base: deploymentBase }) => {
 
 export default defineConfig({
   site: 'https://continuous-drivenarchitecture.github.io',
-  base: '/developer-portal/',
+  base: '/website/',
   vite: {
     resolve: {
       // Lets content read the pinned library version from the installed
