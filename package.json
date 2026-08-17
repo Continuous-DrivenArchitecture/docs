@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.41.7",
-    "@cda/archi-semantic-core": "0.4.1",
+    "@cda/archi-semantic-core": "0.4.2",
     "astro": "^7.2.2"
   },
   "devDependencies": {

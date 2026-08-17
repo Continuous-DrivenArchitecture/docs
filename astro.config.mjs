@@ -3,34 +3,10 @@ import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
 import { fileURLToPath } from 'node:url';
 
-// GitHub Pages hosts the repository under a path, not the org root.
-// `site` + `base` keep every generated asset and link repository-path aware.
-const base = '/developer-portal/';
-
-// Rewrites root-absolute links inside markdown/mdx content so they include
-// the deployment base. Astro does not prefix these automatically.
-const baseLinks = ({ base: deploymentBase }) => {
-  const walk = (node) => {
-    if (!node || typeof node !== 'object') return;
-    if (node.type === 'element' && node.tagName === 'a') {
-      const href = node.properties && node.properties.href;
-      if (
-        typeof href === 'string' &&
-        href.startsWith('/') &&
-        !href.startsWith('//') &&
-        !href.startsWith(deploymentBase)
-      ) {
-        node.properties.href = deploymentBase + href;
-      }
-    }
-    for (const child of node.children || []) walk(child);
-  };
-  return () => (tree) => walk(tree);
-};
-
+// The site is served at the root of the custom domain
+// (continuous-drivenarchitecture.org.pe), so no `base` is needed.
 export default defineConfig({
-  site: 'https://continuous-drivenarchitecture.github.io',
-  base: '/developer-portal/',
+  site: 'https://continuous-drivenarchitecture.org.pe',
   vite: {
     resolve: {
       // Lets content read the pinned library version from the installed
@@ -118,7 +94,7 @@ export default defineConfig({
           items: [
             {
               label: 'archi-semantic-core',
-              badge: { text: 'v0.4.1', variant: 'note' },
+              badge: { text: 'v0.4.2', variant: 'note' },
               items: [
                 {
                   label: 'Getting Started',
