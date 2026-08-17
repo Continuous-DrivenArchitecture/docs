@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 // GitHub Pages hosts the repository under a path, not the org root.
 // `site` + `base` keep every generated asset and link repository-path aware.
-const base = '/developer-portal/';
+const base = '/website/';
 
 // Rewrites root-absolute links inside markdown/mdx content so they include
 // the deployment base. Astro does not prefix these automatically.
