@@ -1,0 +1,18 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./typedoc.entries.ts"
+  ],
+  "entryPointStrategy": "resolve",
+  "tsconfig": "./tsconfig.typedoc.json",
+  "out": "src/content/docs/libraries/archi-semantic-core/reference/generated",
+  "plugin": [
+    "typedoc-plugin-markdown",
+    "typedoc-plugin-frontmatter",
+    "./typedoc.starlight-plugin.mjs"
+  ],
+  "excludeInternal": true,
+  "excludePrivate": true,
+  "readme": "none",
+  "sanitizeComments": true
+}

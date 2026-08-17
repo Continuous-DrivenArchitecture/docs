@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+src/content/docs/libraries/archi-semantic-core/reference/generated/
+.env
+.DS_Store
+Thumbs.db
+*.log
+build-log.txt

@@ -1,0 +1,105 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**'
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      # Guard (deploy-time only): the deployed site must come from a
+      # human-authored commit, never from a bot identity or a bot
+      # co-author trailer. Keeps the contributor graph human-only and
+      # mirrors the release guard of archi-semantic-core.
+      - name: Verify commit author is human
+        if: github.event_name == 'push'
+        run: |
+          author="$(git log -1 --format='%an <%ae>')"
+          if [[ "$author" == *"[bot]"* ]] || [[ "$author" == "semantic-release-bot"* ]]; then
+            echo "::error::commit authored by a bot ('$author'), refusing to deploy" >&2
+            exit 1
+          fi
+          message="$(git log -1 --format=%B)"
+          if echo "$message" | grep -qiE '^(Co-authored-by|Co-committed-by|Signed-off-by|Acked-by|Reviewed-by|Tested-by):[[:space:]]*[^<]*(\[bot\]|semantic-release-bot)'; then
+            echo "::error::commit carries a bot trailer (co-author, co-committer, sign-off, ...), refusing to deploy" >&2
+            exit 1
+          fi
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - name: Setup Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Generate API reference
+        run: npm run gen:api
+      - name: Build site
+        run: npm run build
+      - name: Upload Pages artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: dist
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Audits the production dependency tree. Dev-only tooling is
+      # excluded: its reported issues are inside npm's own bundled
+      # dependencies, which are not fixable from this repo and never
+      # reach the deployed site.
+      - run: npm audit --omit=dev --audit-level=high
+
+  sbom:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm sbom --sbom-format=spdx --omit=dev > sbom.spdx.json
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: sbom
+          path: sbom.spdx.json
+          if-no-files-found: error
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
