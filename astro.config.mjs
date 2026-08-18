@@ -88,19 +88,14 @@ export default defineConfig({
         Footer: './src/components/Footer.astro',
       },
       // Canonical locale is English served at the root (Starlight's `root`
-      // locale keeps the default at / instead of /en/). The remaining
-      // locales are declared up front so the architecture is
-      // translation-ready: content dirs can be added per locale without
-      // touching the configuration.
+      // locale keeps the default at / instead of /en/). Only locales with
+      // actual content are declared so the language switcher shows just the
+      // available languages. Additional locales can be added here as soon as
+      // their content directories exist.
       defaultLocale: 'root',
       locales: {
         root: { label: 'English', lang: 'en' },
         es: { label: 'Español', lang: 'es' },
-        de: { label: 'Deutsch', lang: 'de' },
-        fr: { label: 'Français', lang: 'fr' },
-        nl: { label: 'Nederlands', lang: 'nl' },
-        pt: { label: 'Português', lang: 'pt' },
-        zh: { label: '中文', lang: 'zh' },
       },
       // Single sidebar shared by all locales. Starlight prefixes internal
       // links with the active locale, and `translations` localize labels.
