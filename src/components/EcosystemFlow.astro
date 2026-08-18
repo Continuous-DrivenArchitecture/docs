@@ -1,0 +1,111 @@
+---
+/**
+ * Restrained ecosystem representation.
+ *
+ * Shows how CDA capabilities relate, distinguishing what is available today
+ * from what the project's roadmap explicitly plans. Nothing fictional: the
+ * "today" steps map to archi-semantic-core's real API; the "roadmap" steps
+ * come from the roadmap page (CLI validation gates, semantic diffing,
+ * quality rules) and are clearly marked as planned.
+ */
+---
+
+<div class="cda-flow">
+	<div class="cda-flow-step">
+		<span class="cda-flow-layer">Sources</span>
+		<span class="cda-flow-item">Archi native models (.archimate)</span>
+	</div>
+	<div class="cda-flow-arrow" aria-hidden="true">↓</div>
+	<div class="cda-flow-step" data-state="today">
+		<span class="cda-flow-layer">Model ingestion</span>
+		<span class="cda-flow-item">@cda/archi-semantic-core — <code>parseArchiModel</code></span>
+		<span class="cda-flow-state">available today</span>
+	</div>
+	<div class="cda-flow-arrow" aria-hidden="true">↓</div>
+	<div class="cda-flow-step" data-state="today">
+		<span class="cda-flow-layer">Semantic representation</span>
+		<span class="cda-flow-item">Typed <code>ArchiModel</code> — folders, elements, relationships, views, geometry, styling, profiles</span>
+		<span class="cda-flow-state">available today</span>
+	</div>
+	<div class="cda-flow-arrow" aria-hidden="true">↓</div>
+	<div class="cda-flow-step" data-state="today">
+		<span class="cda-flow-layer">Validation</span>
+		<span class="cda-flow-item"><code>validateArchiModel</code> — structural integrity, ids and dangling references</span>
+		<span class="cda-flow-state">available today</span>
+	</div>
+	<div class="cda-flow-arrow" aria-hidden="true">↓</div>
+	<div class="cda-flow-step" data-state="roadmap">
+		<span class="cda-flow-layer">Developer tooling / automation</span>
+		<span class="cda-flow-item">CLI validation gates · semantic diffing · quality rules</span>
+		<span class="cda-flow-state">roadmap</span>
+	</div>
+</div>
+
+<style>
+	@layer starlight.core {
+		.cda-flow {
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.35rem;
+			max-width: 44rem;
+			margin: 1.75rem auto 0;
+			text-align: left;
+		}
+
+		.cda-flow-step {
+			border: 1px solid var(--sl-color-hairline);
+			border-radius: 10px;
+			padding: 0.9rem 1.2rem;
+			background: var(--sl-color-gray-6);
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+
+		.cda-flow-layer {
+			font-family: var(--sl-font-mono);
+			font-size: 0.72rem;
+			font-weight: 650;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--sl-color-gray-3);
+		}
+
+		.cda-flow-item {
+			font-size: 0.94rem;
+			color: var(--sl-color-gray-1);
+		}
+
+		.cda-flow-item code {
+			font-size: 0.86em;
+		}
+
+		.cda-flow-state {
+			font-size: 0.72rem;
+			font-family: var(--sl-font-mono);
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+		}
+
+		.cda-flow-step[data-state='today'] {
+			border-color: color-mix(in srgb, var(--cda-blue-300) 45%, var(--sl-color-hairline));
+		}
+
+		.cda-flow-step[data-state='today'] .cda-flow-state {
+			color: var(--sl-color-green);
+		}
+
+		.cda-flow-step[data-state='roadmap'] .cda-flow-state {
+			color: var(--sl-color-gray-4);
+		}
+
+		.cda-flow-arrow {
+			align-self: center;
+			color: var(--sl-color-gray-4);
+			font-family: var(--sl-font-mono);
+			line-height: 1;
+			user-select: none;
+		}
+	}
+</style>

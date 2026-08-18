@@ -1,4 +1,4 @@
-﻿---
+---
 title: Referencia de API
 description: El contrato tipado completo de @cda/archi-semantic-core.
 ---

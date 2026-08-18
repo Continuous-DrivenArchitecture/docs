@@ -1,0 +1,80 @@
+---
+title: archi-semantic-core
+description: The foundational CDA library — parses native Archi .archimate models into typed, validated semantic structures.
+---
+
+import libPkg from '@cda-lib-version';
+
+`@cda/archi-semantic-core` is the foundational library of the CDA
+ecosystem: it reads native Archi `.archimate` model files and exposes their
+semantics through a small, typed `ArchiModel`.
+
+## What is this?
+
+A TypeScript parser for the native `.archimate` format used by the
+[Archi](https://www.archimatetool.com/) desktop editor — both the plain-XML
+and the zip-archive file shapes. No reinterpretation, no lossy
+normalization: a model means what the modeling tool stored.
+
+## Why would I use it?
+
+Because your pipelines, governance rules and tooling need the architecture
+as **typed, validated data** instead of a closed file format. CDA's core
+principle is faithfulness over convenience — the API preserves native
+semantics and documents its boundaries honestly.
+
+## Install
+
+```sh
+npm install @cda/archi-semantic-core
+```
+
+Requirements: Node.js `^20 || ^22 || >=24`, ESM-only. TypeScript types are
+bundled in the package; no separate `@types/*` needed. See
+[Installation](/libraries/archi-semantic-core/getting-started/installation/).
+
+## See it working
+
+Parse a model, read its elements, and validate it in a few lines:
+
+```ts
+import { parseArchiModel, validateArchiModel } from '@cda/archi-semantic-core';
+
+const model = parseArchiModel(xmlText);
+const { valid, errors } = validateArchiModel(model);
+
+model.elements.map((e) => e.type); // ["BusinessActor", ...]
+```
+
+Run the full walkthrough in about five minutes:
+[Quick Start](/get-started/quick-start/).
+
+## Common tasks
+
+- [Parse your first model](/libraries/archi-semantic-core/getting-started/parse-first-model/) — a minimal end-to-end example.
+- [Build lookup indexes](/libraries/archi-semantic-core/guides/lookup-indexes/) — efficient element and relationship access.
+- [Impact analysis](/libraries/archi-semantic-core/guides/impact-analysis/) — traverse relationships from an element.
+- [Structural validation in CI](/libraries/archi-semantic-core/guides/validation-in-ci/) — gate pipelines on model integrity.
+- [Working with large models](/libraries/archi-semantic-core/guides/large-models/) — performance characteristics and limits.
+
+## Technical reference
+
+- [API Reference](/libraries/archi-semantic-core/reference/overview/) — functions and types, generated from the published npm package.
+- [Compatibility matrix](/libraries/archi-semantic-core/compatibility/matrix/) — what Archi/ArchiMate® coverage is verified.
+- [Known limitations](/libraries/archi-semantic-core/compatibility/known-limitations/) — what this library deliberately does not do.
+
+## Project health
+
+- **Version**: v{libPkg.version} · **License**: MIT
+- **Status**: stable (per the [roadmap](/architecture/roadmap/))
+- **Node.js**: `^20.0.0 || ^22.0.0 || >=24.0.0` · **Module format**: ESM-only
+- **TypeScript**: types bundled in the package
+- **npm**: [@cda/archi-semantic-core](https://www.npmjs.com/package/@cda/archi-semantic-core) · published with OIDC provenance
+- **Source**: [Continuous-DrivenArchitecture/archi-semantic-core](https://github.com/Continuous-DrivenArchitecture/archi-semantic-core)
+- **Releases**: [Changelog](/libraries/archi-semantic-core/project/changelog/)
+
+## Contribute
+
+Bug reports with minimal `.archimate` repros, fixtures and tests are the
+most valuable contributions. Follow the repository's own CONTRIBUTING file:
+[archi-semantic-core](https://github.com/Continuous-DrivenArchitecture/archi-semantic-core).

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Contribuciones
 description: Cómo contribuir a archi-semantic-core.
 ---

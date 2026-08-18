@@ -1,4 +1,4 @@
-﻿---
+---
 title: Introduction
 description: What archi-semantic-core is, what it is not, and where it fits in the CDA ecosystem.
 ---
@@ -8,10 +8,10 @@ model files** created by the [Archi](https://www.archimatetool.com/) desktop
 editor and exposes their semantics through a small, typed `ArchiModel`.
 
 ```text
-.archimate XML  â†’  archi-semantic-core  â†’  ArchiModel
+.archimate XML  →  archi-semantic-core  →  ArchiModel
 ```
 
-The library reads Archi's native XML format (`xmlns:archimate="http://www.archimatetool.com/archimate"` â€”
+The library reads Archi's native XML format (`xmlns:archimate="http://www.archimatetool.com/archimate"` —
 the format Archi itself reads and writes on disk) and converts it into a clean,
 well-typed model containing:
 
@@ -19,8 +19,8 @@ well-typed model containing:
 - views, diagram objects, diagram connections and notes;
 - documentation, properties, visual styling and geometry;
 - Specializations and generic Profiles;
-- the native semantic details â€” Junctions, Access/Influence/Association
-  attributes, Label Expressions â€” needed to work with a model without
+- the native semantic details — Junctions, Access/Influence/Association
+  attributes, Label Expressions — needed to work with a model without
   understanding Archi's XML structure;
 - the zip-archive variant of the `.archimate` file format, through the
   Node-only `/archive` subpath.
@@ -43,7 +43,7 @@ It does not reinterpret the model for another standard.
 This package is **not**:
 
 - a parser or generator for the
-  [ArchiMateÂ® Model Exchange File Format](https://www.opengroup.org/xsd/archimate/);
+  [ArchiMate® Model Exchange File Format](https://www.opengroup.org/xsd/archimate/);
 - an editor or a mutation framework;
 - a renderer, layout engine, or diagram-routing engine;
 - an architecture-quality linter;
@@ -60,7 +60,7 @@ boundary.
 Continuous-Driven Architecture (CDA) ecosystem: a faithful, typed semantic
 representation of how a design is built in the Archi editor. Downstream tools
 consume that representation for impact analysis, drift detection, and
-architecture evolution â€” layers that may build a navigable graph on top,
+architecture evolution — layers that may build a navigable graph on top,
 instead of this package trying to be one itself.
 
 :::caution[Not affiliated with Archi]
@@ -72,6 +72,6 @@ project, or The Open Group.
 
 ## Next steps
 
-- [Installation](/libraries/archi-semantic-core/getting-started/installation/) â€” requirements and install.
-- [Parse your first model](/libraries/archi-semantic-core/getting-started/parse-first-model/) â€” a minimal end-to-end example.
-- [ArchiModel](/libraries/archi-semantic-core/core-concepts/archi-model/) â€” what the parsed model contains.
+- [Installation](/libraries/archi-semantic-core/getting-started/installation/) — requirements and install.
+- [Parse your first model](/libraries/archi-semantic-core/getting-started/parse-first-model/) — a minimal end-to-end example.
+- [ArchiModel](/libraries/archi-semantic-core/core-concepts/archi-model/) — what the parsed model contains.

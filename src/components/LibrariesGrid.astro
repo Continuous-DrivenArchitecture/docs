@@ -1,0 +1,24 @@
+---
+import LibraryCard from './LibraryCard.astro';
+import { libraries } from '../data/libraries';
+---
+
+<!--
+Responsive grid of library cards, driven by the libraries catalog.
+One card per library; the grid scales with the catalog.
+-->
+
+<div class="cda-library-grid">
+	{libraries.map((lib) => <LibraryCard lib={lib} />)}
+</div>
+
+<style>
+	@layer starlight.core {
+		.cda-library-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+			gap: 1rem;
+			margin: 1.5rem 0;
+		}
+	}
+</style>

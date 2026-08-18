@@ -1,4 +1,4 @@
-﻿---
+---
 title: Trabajo con modelos grandes
 description: Colecciones planas, análisis en orden de origen y el pipeline de archivo de memoria constante.
 ---

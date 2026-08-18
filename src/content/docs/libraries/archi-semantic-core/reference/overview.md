@@ -1,4 +1,4 @@
-﻿---
+---
 title: API Reference
 description: The complete typed contract of @cda/archi-semantic-core.
 ---

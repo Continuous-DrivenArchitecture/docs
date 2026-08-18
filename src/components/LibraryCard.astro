@@ -1,0 +1,108 @@
+---
+import type { CdaLibrary } from '../data/libraries';
+
+interface Props {
+	lib: CdaLibrary;
+}
+
+const { lib } = Astro.props;
+---
+
+<!--
+Library card used on the homepage and the /libraries directory.
+Renders a quiet, factual card: purpose, version, license, npm/source links.
+-->
+
+<a class="cda-library-card" href={lib.docsPath}>
+	<h3>{lib.name}</h3>
+	<p>{lib.tagline}</p>
+	<span class="cda-library-meta">
+		<span class="cda-library-meta-line">
+			<span class="cda-cap">v{lib.version}</span>
+			<span class="cda-cap">{lib.license}</span>
+			<span class="cda-cap" data-status={lib.status}>{lib.status}</span>
+		</span>
+		<span class="cda-library-meta-links">
+			<a href={lib.npmUrl}>npm</a>
+			<a href={lib.repoUrl}>source</a>
+			<a href={lib.overviewPath}>docs</a>
+		</span>
+	</span>
+</a>
+
+<style>
+	@layer starlight.core {
+		.cda-library-card {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			padding: 1.25rem;
+			border: 1px solid var(--sl-color-hairline);
+			border-radius: 0.5rem;
+			text-decoration: none;
+			color: inherit;
+			background: var(--sl-color-gray-6);
+			transition: border-color 120ms ease, transform 120ms ease;
+		}
+
+		.cda-library-card h3 {
+			margin: 0;
+			font-size: var(--sl-text-h4);
+			font-family: var(--sl-font-mono);
+		}
+
+		.cda-library-card p {
+			margin: 0;
+			color: var(--sl-color-gray-2);
+			font-size: var(--sl-text-sm);
+		}
+
+		.cda-library-card .cda-library-meta {
+			margin-top: auto;
+			padding-top: 0.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 0.5rem;
+			flex-wrap: wrap;
+			color: var(--sl-color-gray-4);
+			font-size: var(--sl-text-xs);
+		}
+
+		.cda-library-meta-line {
+			display: inline-flex;
+			gap: 0.35rem;
+			align-items: baseline;
+		}
+
+		.cda-library-meta .cda-cap {
+			font-family: var(--sl-font-mono);
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+		}
+
+		.cda-library-meta .cda-cap[data-status='stable'] {
+			color: var(--sl-color-green);
+		}
+
+		.cda-library-meta-links {
+			display: inline-flex;
+			gap: 0.6rem;
+		}
+
+		.cda-library-meta-links a {
+			color: var(--sl-color-gray-3);
+			text-decoration: none;
+		}
+
+		.cda-library-meta-links a:hover {
+			color: var(--sl-color-accent);
+		}
+
+		.cda-library-card:hover {
+			border-color: var(--sl-color-accent);
+			transform: translateY(-1px);
+		}
+	}
+</style>

@@ -1,4 +1,4 @@
-﻿---
+---
 title: IDs and references
 description: How identity and cross-references work across the model.
 ---
@@ -9,7 +9,7 @@ well.
 
 ## One shared id pool
 
-Archi draws every id â€” semantic and visual â€” from **one shared pool**:
+Archi draws every id — semantic and visual — from **one shared pool**:
 folders, elements, relationships, views, diagram objects, diagram
 connections and notes all share a namespace. A `duplicate-id` between any
 two of them is a real integrity problem, and `validateArchiModel` detects
@@ -35,7 +35,7 @@ The model never embeds object references. Instead:
 The native XML only expresses containment through nesting (a `<child>` inside
 a `<child>`, a `<folder>` inside a `<folder>`). `parseArchiModel` does one
 extra O(n) derivation pass so every parent already has its children's ids
-precomputed, in source order â€” no tree-walking required on the caller's side:
+precomputed, in source order — no tree-walking required on the caller's side:
 
 ```ts
 interface ArchiView {
@@ -57,9 +57,9 @@ interface ArchiFolder {
 Sub-folder hierarchy is expressed the other way around: walk each folder's
 own `parentId` rather than looking for it in a parent's `containedIds`.
 
-## No lookup helpers â€” by design
+## No lookup helpers — by design
 
 The package intentionally does **not** ship lookup helpers. Callers that
 need repeated lookups build `Map<string, ...>` indexes appropriate to their
-own workload â€” a one-time O(n) pass that turns every subsequent lookup into
+own workload — a one-time O(n) pass that turns every subsequent lookup into
 O(1). See [Build lookup indexes](/libraries/archi-semantic-core/guides/lookup-indexes/).

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Contributing
 description: How to contribute to archi-semantic-core.
 ---
@@ -18,13 +18,13 @@ npm test
 
 The repository uses two long-lived branches:
 
-- `develop` â€” integration branch; all PRs target it.
-- `main` â€” release branch; updated **only** by semantic-release on
+- `develop` — integration branch; all PRs target it.
+- `main` — release branch; updated **only** by semantic-release on
   publish.
 
 Releases are automated with semantic-release: commits must follow the
 [Conventional Commits](https://www.conventionalcommits.org/) specification.
-Every commit to `develop` lands in the changelog and release notes â€” write
+Every commit to `develop` lands in the changelog and release notes — write
 commit messages for human readers, not for the tool.
 
 ## What to add a test for
@@ -32,11 +32,11 @@ commit messages for human readers, not for the tool.
 Any behavior change to the parser, validator, or archive handling must ship
 with fixture-backed tests. The fixture layout follows the source layout:
 
-- `tests/fixtures/` â€” plain XML and zip `.archimate` samples;
-- `tests/parser/` â€” parsing behavior, raw vs. semantic values, defaults;
-- `tests/validator/` â€” every issue code the validator can emit;
-- `tests/archive/` â€” zip handling, including embedded-image archives;
-- `examples/` â€” runnable usage samples, each with a `tests/examples.test.ts`
+- `tests/fixtures/` — plain XML and zip `.archimate` samples;
+- `tests/parser/` — parsing behavior, raw vs. semantic values, defaults;
+- `tests/validator/` — every issue code the validator can emit;
+- `tests/archive/` — zip handling, including embedded-image archives;
+- `examples/` — runnable usage samples, each with a `tests/examples.test.ts`
   harness.
 
 ## Public API changes
@@ -48,13 +48,13 @@ with fixture-backed tests. The fixture layout follows the source layout:
    site is generated from it;
 2. bump the version according to semantic-release rules (fix/feat/BREAKING
    CHANGE);
-3. never land silently â€” the PR description must call them out.
+3. never land silently — the PR description must call them out.
 
 ## Documentation
 
 Site pages live in `website/src/content/docs/`; the API reference group is
 generated from JSDoc (`npm run gen:api` inside `website/`) at build and
-deploy time â€” it is not committed. When a PR changes public API, the JSDoc
+deploy time — it is not committed. When a PR changes public API, the JSDoc
 on the source is the documentation; the generated pages follow it
 automatically.
 
@@ -68,4 +68,4 @@ npm run test:published   # exercises the archive pipeline end-to-end
 
 Then open the PR against `develop`. If the change is user-visible, the
 release notes/changelog entries are produced automatically at publish time
-â€” no manual changelog editing.
+— no manual changelog editing.

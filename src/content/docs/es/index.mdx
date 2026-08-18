@@ -1,39 +1,45 @@
 ---
-title: CDA Developer Portal
+title: Portal de desarrollo de CDA
 description: Librerías de código abierto y herramientas para desarrolladores para Continuous-Driven Architecture — arquitectura que el software puede entender.
 template: splash
 hero:
-  title: CDA Developer Portal
-  tagline: Arquitectura que el software puede entender. Librerías de código abierto y herramientas para desarrolladores para trabajar con la arquitectura como artefactos de software estructurados y procesables.
+  title: Portal de desarrollo de CDA
+  tagline: Arquitectura que el software puede entender. CDA lee los modelos que los arquitectos realmente producen y los convierte en estructuras tipadas y validadas sobre las que pueden actuar sus pipelines y herramientas.
   actions:
-    - text: Empezar
+    - text: Inicio rápido
+      link: es/get-started/quick-start/
+      icon: right-arrow
+    - text: ¿Qué es CDA?
       link: es/get-started/what-is-cda/
       icon: right-arrow
+      variant: minimal
     - text: GitHub
       link: https://github.com/Continuous-DrivenArchitecture
       icon: external
       variant: minimal
 ---
 
-import libPkg from '@cda-lib-version';
+import LibrariesGrid from '../../../components/LibrariesGrid.astro';
+import CdaDemo from '../../../components/CdaDemo.astro';
+import EcosystemFlow from '../../../components/EcosystemFlow.astro';
 
-<div class="cda-section-head">
-<h2>Explora las librerías</h2>
-<p>El ecosistema de Continuous-Driven Architecture, una librería a la vez.</p>
+<div class="cda-install">
+```sh
+npm install @cda/archi-semantic-core
+```
 </div>
 
-<div class="cda-library-grid">
-
-<a class="cda-library-card" href="libraries/archi-semantic-core/getting-started/introduction/">
-<h3>archi-semantic-core</h3>
-<p>Modelos Archi nativos → semántica tipada.</p>
-<span class="cda-library-meta">v{libPkg.version} · npm · MIT</span>
-</a>
-
-</div>
+<CdaDemo />
 
 <div class="cda-section-head">
-<h2>La idea</h2>
+<h2>Librerías</h2>
+<p>Paquetes independientes con licencia MIT. Un portal, un diseño, una búsqueda.</p>
+</div>
+
+<LibrariesGrid />
+
+<div class="cda-section-head">
+<h2>Qué es CDA</h2>
 <p>La arquitectura es intención de diseño. CDA la trata como datos — estructurados, versionados y procesables por software.</p>
 </div>
 
@@ -51,7 +57,38 @@ import libPkg from '@cda-lib-version';
 
 <div class="cda-capability">
 <h3><span class="cda-kicker">Abierto</span>Un ecosistema, no una plataforma</h3>
-<p>Paquetes independientes con licencia MIT con un único portal para desarrolladores, un diseño, una búsqueda.</p>
+<p>Paquetes independientes con un único portal para desarrolladores, un diseño, una búsqueda.</p>
+</div>
+
+</div>
+
+<div class="cda-section-head">
+<h2>Cómo encaja el ecosistema</h2>
+<p>Fuentes de arquitectura, representación semántica, validación — y las herramientas construidas encima.</p>
+</div>
+
+<EcosystemFlow />
+
+<div class="cda-section-head">
+<h2>Contribuya</h2>
+<p>CDA es código abierto. Los informes de errores con reproducciones mínimas, fixtures, pruebas y documentación son bienvenidos.</p>
+</div>
+
+<div class="cda-contribute">
+
+<div class="cda-contribute-item">
+<a href="https://github.com/Continuous-DrivenArchitecture/archi-semantic-core">Repositorio fuente</a>
+<p>Código, pruebas, fixtures y JSDoc de la librería actual.</p>
+</div>
+
+<div class="cda-contribute-item">
+<a href="https://github.com/Continuous-DrivenArchitecture/archi-semantic-core/issues">Incidencias</a>
+<p>Reporte errores, solicite funciones, comparta modelos del mundo real.</p>
+</div>
+
+<div class="cda-contribute-item">
+<a href="contributing/">Guía de contribución</a>
+<p>Cómo contribuir a las librerías y a este portal.</p>
 </div>
 
 </div>

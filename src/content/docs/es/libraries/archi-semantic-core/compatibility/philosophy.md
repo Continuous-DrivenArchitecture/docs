@@ -1,4 +1,4 @@
-﻿---
+---
 title: Filosofía de compatibilidad
 description: Por qué este paquete lee el formato nativo de Archi y no un formato de intercambio estandarizado.
 ---

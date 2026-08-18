@@ -1,4 +1,4 @@
-﻿---
+---
 title: Installation
 description: Requirements, install commands and module format for @cda/archi-semantic-core.
 ---
@@ -21,16 +21,16 @@ npm install @cda/archi-semantic-core
 The package exposes two public subpaths:
 
 ```ts
-// Browser/bundler safe â€” pure parsing, validation and label expressions.
+// Browser/bundler safe — pure parsing, validation and label expressions.
 import { parseArchiModel, validateArchiModel } from '@cda/archi-semantic-core';
 
-// Node-only â€” .archimate zip-archive handling (uses node:zlib).
+// Node-only — .archimate zip-archive handling (uses node:zlib).
 import { extractArchiModelXml } from '@cda/archi-semantic-core/archive';
 ```
 
 The `/archive` subpath exists because unzipping uses Node's built-in `zlib`;
 keeping it out of the root entrypoint preserves browser compatibility for the
-core API. This is an intentional platform boundary â€” see
+core API. This is an intentional platform boundary — see
 [Working with .archimate archives](/libraries/archi-semantic-core/getting-started/archives/).
 
 ## TypeScript

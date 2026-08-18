@@ -1,4 +1,4 @@
-﻿---
+---
 title: Principios de diseño
 description: Los principios de ingeniería que sustentan el paquete.
 ---

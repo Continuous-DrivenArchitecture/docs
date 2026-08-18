@@ -1,4 +1,4 @@
-﻿---
+---
 title: Instalación
 description: Requisitos, comandos de instalación y formato de módulo de @cda/archi-semantic-core.
 ---

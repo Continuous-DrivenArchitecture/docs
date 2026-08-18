@@ -1,4 +1,4 @@
-﻿---
+---
 title: Limitaciones conocidas
 description: Límites honestos — qué no puede hacer todavía este paquete o qué nunca hará.
 ---

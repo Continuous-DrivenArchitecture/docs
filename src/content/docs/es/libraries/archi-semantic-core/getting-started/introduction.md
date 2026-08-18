@@ -1,4 +1,4 @@
-﻿---
+---
 title: Introducción
 description: Qué es archi-semantic-core, qué no es y dónde encaja en el ecosistema CDA.
 ---

@@ -1,19 +1,19 @@
-﻿---
+---
 title: Compatibility philosophy
 description: Why this package reads Archi's native format, not a standardized exchange format.
 ---
 
 `archi-semantic-core` parses **Archi's native `.archimate` XML**, the format
-Archi itself reads and writes on disk â€” not the ArchiMateÂ® Model Exchange
+Archi itself reads and writes on disk — not the ArchiMate® Model Exchange
 File Format. That choice is deliberate and deserves an explicit explanation.
 
 ## Faithful semantics over standards
 
 The purpose of this package is a **faithful, typed semantic representation
-of the model as Archi actually stores it**. Native Archi semantics â€” raw vs.
-semantic type names, Junctions' `type` attribute, Access' `0`â€“`3` codes,
+of the model as Archi actually stores it**. Native Archi semantics — raw vs.
+semantic type names, Junctions' `type` attribute, Access' `0`–`3` codes,
 Influence's free-text `strength`, Label Expressions, nested-relative
-geometry, Specializations â€” are part of the data, not an obstacle.
+geometry, Specializations — are part of the data, not an obstacle.
 
 An exchange format (Open Exchange, .xml variants) exists to
 *interoperate across tools*, and in doing so it normalizes: `AccessTypeEnum`
@@ -24,8 +24,8 @@ nested-relative coordinates don't exist. A parser for an exchange format
 built to *not* do either.
 
 If you need Open Exchange compatibility, the right architecture is a
-transformer layer on top of `ArchiModel` â€” reading this package's output
-and emitting the exchange format â€” not a fork that parses exchange XML.
+transformer layer on top of `ArchiModel` — reading this package's output
+and emitting the exchange format — not a fork that parses exchange XML.
 
 ## Original Archi's quirks, preserved
 
@@ -37,11 +37,11 @@ text.
 
 ## Compatibility goals
 
-- **Forward compatibility with Archi versions** â€” a model saved by a newer
+- **Forward compatibility with Archi versions** — a model saved by a newer
   Archi with previously-unknown element types or relationship attributes
   still parses; nothing is rejected because a name was not in a hardcoded
   catalogue.
-- **Exactness** â€” unknown native values are never guessed (see
+- **Exactness** — unknown native values are never guessed (see
   [Junctions](/libraries/archi-semantic-core/semantics/junctions/) for the clearest example).
-- **Honesty** â€” boundaries and limitations are documented on
+- **Honesty** — boundaries and limitations are documented on
   [Known limitations](/libraries/archi-semantic-core/compatibility/known-limitations/).

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Análisis de impacto
 description: Recorrer las relaciones en ambas direcciones para encontrar qué depende de un elemento determinado.
 ---

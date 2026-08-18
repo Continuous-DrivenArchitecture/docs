@@ -1,4 +1,4 @@
-﻿---
+---
 title: Crear índices de búsqueda
 description: Convertir colecciones planas basadas en id en tablas de búsqueda O(1).
 ---

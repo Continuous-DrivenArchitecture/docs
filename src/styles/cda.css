@@ -249,6 +249,39 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Homepage contribution section. */
+.cda-contribute {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.75rem auto 0;
+  max-width: 48rem;
+  text-align: left;
+}
+
+.cda-contribute-item {
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  background: var(--sl-color-gray-6);
+}
+
+.cda-contribute-item a {
+  font-weight: 600;
+  color: var(--sl-color-accent);
+  text-decoration: none;
+}
+
+.cda-contribute-item a:hover {
+  text-decoration: underline;
+}
+
+.cda-contribute-item p {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-3);
+}
+
 /* ---------- Tables ---------- */
 
 .main-frame .sl-markdown-content table {

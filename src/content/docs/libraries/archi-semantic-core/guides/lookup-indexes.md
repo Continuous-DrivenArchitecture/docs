@@ -1,11 +1,11 @@
-﻿---
+---
 title: Build lookup indexes
 description: Turn flat id-based collections into O(1) lookup tables.
 ---
 
 The model's collections are flat arrays whose cross-references are plain
 string ids (see [IDs and references](/libraries/archi-semantic-core/core-concepts/ids-references/)). For
-anything beyond one-off lookups, build a `Map` index once â€” a single O(n)
+anything beyond one-off lookups, build a `Map` index once — a single O(n)
 pass that pays off on every subsequent lookup.
 
 ```ts
@@ -64,5 +64,5 @@ function objectsInView(viewId: string) {
 ## When to skip indexes
 
 For a single traversal of one collection, `find`/`filter` are fine and
-simpler. Build indexes when you will look things up repeatedly â€” typically
+simpler. Build indexes when you will look things up repeatedly — typically
 in any renderer, impact-analysis walk, or report generator.

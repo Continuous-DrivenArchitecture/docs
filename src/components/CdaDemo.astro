@@ -1,0 +1,175 @@
+---
+/**
+ * CDA product demonstration: INPUT -> CDA -> OUTPUT.
+ *
+ * The input, the code and the output are all real: this exact XML is parsed
+ * by @cda/archi-semantic-core v0.4.2 and the output shown is the verbatim
+ * result of running the displayed code. Nothing here is invented.
+ */
+const input = `<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Order Fulfilment" id="model-orders" version="5.0.0">
+  <folder name="Business" id="folder-business" type="business">
+    <element xsi:type="archimate:BusinessActor"
+             name="Customer" id="element-customer"/>
+    <element xsi:type="archimate:BusinessProcess"
+             name="Fulfil order" id="element-process"/>
+  </folder>
+  <folder name="Application" id="folder-app" type="application">
+    <element xsi:type="archimate:ApplicationService"
+             name="Order API" id="element-api"/>
+  </folder>
+  <folder name="Relations" id="folder-relations" type="relations">
+    <element xsi:type="archimate:TriggeringRelationship"
+             id="rel-trigger" source="element-customer"
+             target="element-process"/>
+    <element xsi:type="archimate:RealizationRelationship"
+             id="rel-realize" source="element-api"
+             target="element-process"/>
+  </folder>
+</archimate:model>`;
+
+const code = `import {
+  parseArchiModel,
+  validateArchiModel,
+} from '@cda/archi-semantic-core';
+
+const model = parseArchiModel(xmlText);
+const { valid, errors } = validateArchiModel(model);
+
+model.elements.map((e) => e.type);
+model.elements.map((e) => e.name);`;
+
+const output = `types: ["BusinessActor", "BusinessProcess", "ApplicationService"]
+names: ["Customer", "Fulfil order", "Order API"]
+relationships: 2
+valid: true
+errors: 0`;
+---
+
+<div class="cda-demo" role="img" aria-label="Input: a native Archi model file. CDA: archi-semantic-core parses and validates it. Output: typed elements, relationships and validation result.">
+	<div class="cda-demo-step">
+		<div class="cda-demo-head">
+			<span class="cda-demo-label">INPUT</span>
+			<span class="cda-demo-caption">a native Archi .archimate model</span>
+		</div>
+		<pre class="cda-demo-code" data-lang="xml"><code>{input}</code></pre>
+	</div>
+	<div class="cda-demo-arrow" aria-hidden="true">↓</div>
+	<div class="cda-demo-step" data-step="core">
+		<div class="cda-demo-head">
+			<span class="cda-demo-label">CDA</span>
+			<span class="cda-demo-caption">@cda/archi-semantic-core</span>
+		</div>
+		<pre class="cda-demo-code" data-lang="ts"><code>{code}</code></pre>
+	</div>
+	<div class="cda-demo-arrow" aria-hidden="true">↓</div>
+	<div class="cda-demo-step">
+		<div class="cda-demo-head">
+			<span class="cda-demo-label">OUTPUT</span>
+			<span class="cda-demo-caption">a typed, validated ArchiModel</span>
+		</div>
+		<pre class="cda-demo-code" data-lang="console"><code>{output}</code></pre>
+	</div>
+</div>
+
+<style>
+	@layer starlight.core {
+		.cda-demo {
+			max-width: 46rem;
+			margin: 2rem auto 0;
+			text-align: left;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.cda-demo-step {
+			border: 1px solid var(--sl-color-hairline);
+			border-radius: 10px;
+			background: var(--sl-color-gray-6);
+			overflow: hidden;
+		}
+
+		.cda-demo-step[data-step='core'] {
+			border-color: color-mix(in srgb, var(--cda-blue-300) 55%, var(--sl-color-hairline));
+		}
+
+		:root[data-theme='dark'] .cda-demo-step[data-step='core'] {
+			border-color: color-mix(in srgb, var(--cda-blue-500) 65%, var(--sl-color-hairline));
+		}
+
+		.cda-demo-head {
+			display: flex;
+			align-items: baseline;
+			gap: 0.75rem;
+			padding: 0.55rem 1.1rem;
+			border-bottom: 1px solid var(--sl-color-hairline);
+			background: var(--sl-color-gray-5);
+		}
+
+		.cda-demo-label {
+			font-family: var(--sl-font-mono);
+			font-size: 0.72rem;
+			font-weight: 650;
+			letter-spacing: 0.1em;
+			color: var(--sl-color-gray-3);
+		}
+
+		.cda-demo-step[data-step='core'] .cda-demo-label {
+			color: var(--cda-blue-500);
+		}
+
+		:root[data-theme='dark'] .cda-demo-step[data-step='core'] .cda-demo-label {
+			color: var(--cda-blue-300);
+		}
+
+		.cda-demo-caption {
+			font-size: 0.8rem;
+			color: var(--sl-color-gray-4);
+		}
+
+		.cda-demo-code {
+			margin: 0;
+			padding: 1rem 1.2rem;
+			font-size: 0.8rem;
+			line-height: 1.55;
+			overflow-x: auto;
+		}
+
+		.cda-demo-code[data-lang='xml'] {
+			color: var(--sl-color-gray-2);
+		}
+
+		.cda-demo-code[data-lang='console'] {
+			color: var(--sl-color-gray-2);
+		}
+
+		.cda-demo-arrow {
+			align-self: center;
+			color: var(--sl-color-gray-4);
+			font-family: var(--sl-font-mono);
+			font-size: 0.9rem;
+			line-height: 1;
+			user-select: none;
+		}
+
+		@media (min-width: 64rem) {
+			.cda-demo {
+				display: grid;
+				grid-template-columns: 1fr auto 1fr;
+				grid-template-rows: auto auto auto;
+				column-gap: 0.75rem;
+				max-width: 64rem;
+				align-items: center;
+			}
+
+			.cda-demo-arrow {
+				grid-row: span 3;
+				font-size: 1.2rem;
+			}
+		}
+	}
+</style>

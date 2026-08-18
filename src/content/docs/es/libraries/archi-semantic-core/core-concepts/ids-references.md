@@ -1,4 +1,4 @@
-﻿---
+---
 title: IDs y referencias
 description: Cómo funcionan la identidad y las referencias cruzadas en todo el modelo.
 ---

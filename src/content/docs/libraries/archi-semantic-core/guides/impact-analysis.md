@@ -1,4 +1,4 @@
-﻿---
+---
 title: Impact analysis
 description: Walk relationships in both directions to find what depends on a given element.
 ---
@@ -22,7 +22,7 @@ if (!valid) {
 
 const elementById = new Map(model.elements.map((e) => [e.id, e]));
 
-// relationships BY source and BY target â€” two O(1) neighbor indexes
+// relationships BY source and BY target — two O(1) neighbor indexes
 const outgoingBySource = new Map<string, typeof model.relationships>();
 for (const rel of model.relationships) {
   const bucket = outgoingBySource.get(rel.sourceId) ?? [];
@@ -86,7 +86,7 @@ console.log(report);
 
 - **Relationships can be sources/targets of other relationships.** When
   collecting dependents, resolve `rel.sourceId` from both the elements and
-  relationships collections â€” a changed element may affect other
+  relationships collections — a changed element may affect other
   relationships first (see [Relationships](/libraries/archi-semantic-core/core-concepts/relationships/)).
 - **Validate before trusting the walk.** A dangling `sourceId`/`targetId`
   silently drops an edge from the traversal; `validateArchiModel` surfaces
@@ -97,5 +97,5 @@ console.log(report);
 ## Upstream / downstream symmetry
 
 Swapping the two indexes (walking `outgoingBySource` from a target) answers
-the upstream question: "what does this element depend on?" â€” the same walk,
+the upstream question: "what does this element depend on?" — the same walk,
 different direction.

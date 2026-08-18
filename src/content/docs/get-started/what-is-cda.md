@@ -50,4 +50,4 @@ CI pipelines · governance · tooling · GitOps
 ## Next steps
 
 - [The ecosystem](/get-started/ecosystem/) — the current and planned packages.
-- [First steps](/get-started/first-steps/) — a working end-to-end example.
+- [Quick Start](/get-started/quick-start/) — a working end-to-end example.

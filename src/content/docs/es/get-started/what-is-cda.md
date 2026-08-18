@@ -55,5 +55,5 @@ CI pipelines · governance · tooling · GitOps
 
 - [El ecosistema](/es/get-started/ecosystem/) — los paquetes actuales y
   planificados.
-- [Primeros pasos](/es/get-started/first-steps/) — un ejemplo completo de
+- [Inicio rápido](/es/get-started/quick-start/) — un ejemplo completo de
   principio a fin.
