@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 // GitHub Pages hosts the repository under a path, not the org root.
 // `site` + `base` keep every generated asset and link repository-path aware.
-const base = '/website/';
+const base = '/docs/';
 
 // Rewrites root-absolute links inside markdown/mdx content so they include
 // the deployment base. Astro does not prefix these automatically.
@@ -30,7 +30,7 @@ const baseLinks = ({ base: deploymentBase }) => {
 
 export default defineConfig({
   site: 'https://continuous-drivenarchitecture.github.io',
-  base: '/website/',
+  base: '/docs/',
   vite: {
     resolve: {
       // Lets content read the pinned library version from the installed
