@@ -7,6 +7,12 @@ import libPkg from '@cda-lib-version';
  * Facts come from the installed npm package (version) and the library
  * repository (status, license, engines). Nothing here is invented.
  */
+
+// Base URL of the deployment (e.g. `/docs/` on GitHub Pages). Component
+// links built from these paths must include it, unlike markdown content
+// which is rewritten by the `baseLinks` processor plugin.
+const base = import.meta.env.BASE_URL;
+
 export interface CdaLibrary {
   /** npm package name under the @cda scope. */
   name: string;
@@ -14,7 +20,7 @@ export interface CdaLibrary {
   tagline: string;
   /** Capability taxonomy the library belongs to. */
   capability: 'Model' | 'Semantics' | 'Transform' | 'Validate' | 'Tooling';
-  /** Homepage-path to the library documentation (relative to the docs root). */
+  /** Homepage-path to the library documentation (relative to the site root). */
   docsPath: string;
   /** Path to the library overview page. */
   overviewPath: string;
@@ -46,12 +52,12 @@ export const libraries: CdaLibrary[] = [
     pkgName: '@cda/archi-semantic-core',
     tagline: 'Parse native Archi .archimate models into typed semantic structures.',
     capability: 'Model',
-    docsPath: '/libraries/archi-semantic-core/',
-    overviewPath: '/libraries/archi-semantic-core/getting-started/introduction/',
-    quickStartPath: '/libraries/archi-semantic-core/getting-started/parse-first-model/',
+    docsPath: `${base}libraries/archi-semantic-core/`,
+    overviewPath: `${base}libraries/archi-semantic-core/getting-started/introduction/`,
+    quickStartPath: `${base}libraries/archi-semantic-core/getting-started/parse-first-model/`,
     npmUrl: 'https://www.npmjs.com/package/@cda/archi-semantic-core',
     repoUrl: 'https://github.com/Continuous-DrivenArchitecture/archi-semantic-core',
-    changelogPath: '/libraries/archi-semantic-core/project/changelog/',
+    changelogPath: `${base}libraries/archi-semantic-core/project/changelog/`,
     license: libPkg.license ?? 'MIT',
     nodeEngines: libPkg.engines?.node ?? '^20.0.0 || ^22.0.0 || >=24.0.0',
     moduleFormat: 'ESM-only',

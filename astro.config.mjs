@@ -1,6 +1,7 @@
 ﻿import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
+import { unified } from '@astrojs/markdown-remark';
 import { fileURLToPath } from 'node:url';
 
 // GitHub Pages hosts the repository under a path, not the org root.
@@ -20,7 +21,7 @@ const baseLinks = ({ base: deploymentBase }) => {
         !href.startsWith('//') &&
         !href.startsWith(deploymentBase)
       ) {
-        node.properties.href = deploymentBase + href;
+        node.properties.href = deploymentBase + href.slice(1);
       }
     }
     for (const child of node.children || []) walk(child);
@@ -31,6 +32,9 @@ const baseLinks = ({ base: deploymentBase }) => {
 export default defineConfig({
   site: 'https://continuous-drivenarchitecture.github.io',
   base: '/docs/',
+  markdown: {
+    processor: unified({ rehypePlugins: [baseLinks({ base })] }),
+  },
   vite: {
     resolve: {
       // Lets content read the pinned library version from the installed
@@ -54,8 +58,7 @@ export default defineConfig({
       },
       favicon: 'favicon.svg',
       editLink: {
-        baseUrl:
-          'https://github.com/Continuous-DrivenArchitecture/docs/edit/main/src/content/docs/',
+        baseUrl: 'https://github.com/Continuous-DrivenArchitecture/docs/edit/main/',
       },
       social: [
         {
